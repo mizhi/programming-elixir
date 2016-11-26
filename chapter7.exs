@@ -1,12 +1,11 @@
 defmodule Chapter7 do
-
-  # Problem 0, p68
+  # ListsAndRecursion-0, p72 (PE 1.3)
   def sum([]), do: 0
   def sum([x|xs]) do
     x + sum(xs)
   end
 
-  # Problem 1, p69
+  # ListsAndRecursion-1, p73 (PE 1.3)
   def mapsum(xs, func), do: _mapsum(xs, func, 0)
 
   defp _mapsum([], _func, total), do: total
@@ -15,7 +14,7 @@ defmodule Chapter7 do
     _mapsum(xs, func, total + func.(x))
   end
 
-  # Problem 2, p69
+  # ListsAndRecursion-2, p73 (PE 1.3)
   def max([x|xs]), do: _max(xs, x)
 
   defp _max([], current), do: current
@@ -27,7 +26,7 @@ defmodule Chapter7 do
     end
   end
 
-  # Problem 3, p69
+  # ListsAndRecursion-3, p73 (PE 1.3)
   def caesar(s, n), do: _caesar(s, n, '')
 
   defp _caesar([], _n, final), do: final
@@ -40,7 +39,7 @@ defmodule Chapter7 do
     rem((c - ?a) + n, 26) + ?a
   end
 
-  # Problem 4, p72
+  # ListsAndRecursion-4, p76 (PE 1.3)
   def span(from, to) do
     _span(from, to, [])
   end

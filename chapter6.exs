@@ -3,25 +3,25 @@ defmodule Chapter6 do
     n * 2
   end
 
-  # Problem 1, p45
+  # ModulesAndFunctions-1, p49 (PE 1.3)
   def triple(n) do
     n * 3
   end
 
-  # Problem 3, p45
+  # ModulesAndFunctions-3, p49 (PE 1.3)
   def quadruple(n) do
     double(n) * 2
   end
 
-  # Problem 4, p47
+  # ModulesAndFunctions-4, p51 (PE 1.3)
   def sum(0), do: 0
   def sum(n) when n > 0, do: n + sum(n - 1)
 
-  # Problem 5, p47
+  # ModulesAndFunctions-5, p51 (PE 1.3)
   def gcd(x, 0), do: x
   def gcd(x, y), do: gcd(y, rem(x, y))
 
-  # Problem 6, p52
+  # ModulesAndFunctions-6, p55 (PE 1.3)
 
   # using guards
   def chop(x, min, max) when min < max and x >= min and x <= max, do: chop(x, min, max, div(min + max, 2))
@@ -40,7 +40,7 @@ defmodule Chapter6 do
     end
   end
 
-  # Problem 7, p59
+  # ModulesAndFunctions-7, p63 (PE 1.3)
   def float_to_string(x) do
     :io.format("~.2f~n", [x])
   end
