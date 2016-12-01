@@ -17,11 +17,11 @@ defmodule Chapter11 do
 
   # StringsAndBinaries-4, p119 (PE 1.3)
   def calculate(eq) do
-    ~r/^\s*(?<num1>\d+)\s*(?<op>[\+\*\-\/])\s*(?<num2>\d+)$/ |>
-      Regex.named_captures(eq) |>
-      Map.update!("num1", &String.to_integer/1) |>
-      Map.update!("num2", &String.to_integer/1) |>
-      _compute
+    ~r/^\s*(?<num1>\d+)\s*(?<op>[\+\*\-\/])\s*(?<num2>\d+)$/
+    |> Regex.named_captures(eq)
+    |> Map.update!("num1", &String.to_integer/1)
+    |> Map.update!("num2", &String.to_integer/1)
+    |> _compute
   end
 
   def _compute(%{ "num1" => num1, "num2" => num2, "op" => "+" }), do: num1 + num2
@@ -31,19 +31,32 @@ defmodule Chapter11 do
 
   # StringsAndBinaries-5, p126 (PE 1.3)
   def center(strings) do
-    max_len = strings |>
-      Enum.map(&String.length/1) |>
-      Enum.max
+    max_len = strings
+    |> Enum.map(&String.length/1)
+    |> Enum.max
 
-    strings |>
-      Enum.map(&(_centered(&1, max_len))) |>
-      Enum.each(&IO.puts/1)
+    strings
+    |> Enum.map(&(_centered(&1, max_len)))
+    |> Enum.each(&IO.puts/1)
   end
 
   def _centered(string, width) do
     left = div(width + String.length(string), 2)
-    string |>
-      String.pad_leading(left) |>
-      String.pad_trailing(width)
+    string
+    |> String.pad_leading(left)
+    |> String.pad_trailing(width)
+  end
+
+  # StringsAndBinaries-6, p127 (PE 1.3)
+  def capitalize_sentences(string) do
+    string
+    |> sentences
+    |> Enum.map_join(&String.capitalize/1)
+  end
+
+  def sentences(string) do
+    splits  = ~r/\.\ / |> Regex.replace(string, ". |$|")
+    ~r/\|\$\|/ |> Regex.split(splits)
+  end
   end
 end
