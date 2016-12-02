@@ -42,8 +42,8 @@ defmodule Chapter10 do
 
   # ListsAndRecursion-7, p110 (PE 1.3)
   def primes(n) do
-    Chapter7.span(2, n) |>
-      Enum.filter(&_prime/1)
+    Chapter7.span(2, n)
+    |> Enum.filter(&_prime/1)
   end
 
   def _prime(1), do: false
@@ -69,10 +69,8 @@ defmodule Chapter10 do
   def orders, do: @orders
 
   def add_total_to_orders(orders, tax_rates) do
-    Enum.map(orders,
-      &(add_total_to_order(&1,
-            tax_rate_for_order(&1, tax_rates)))
-    )
+    orders
+    |> Enum.map(&(add_total_to_order(&1, tax_rate_for_order(&1, tax_rates))))
   end
 
   def add_total_to_orders2(orders, tax_rates) do
