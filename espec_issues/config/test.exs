@@ -2,7 +2,7 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
-import_config "#{Mix.env}.exs"
+config :espec_issues, github_url: "https://test"
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
