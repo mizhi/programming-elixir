@@ -16,21 +16,21 @@ defmodule TableFormatterTest do
   end
 
   describe "#split_into_columns" do
-    subject do: TF.split_into_columns(simple_test_data, headers)
+    subject do: TF.split_into_columns(simple_test_data(), headers())
 
-    it do: expect(length(subject)).to eq(length(headers))
-    it do: expect(List.first(subject)).to eq(["r1 c1", "r2 c1", "r3 c1", "r4 c1"])
-    it do: expect(List.last(subject)).to eq(["r1+++c4", "r2 c4", "r3 c4", "r4 c4"])
+    it do: expect(length(subject())).to eq(length(headers()))
+    it do: expect(List.first(subject())).to eq(["r1 c1", "r2 c1", "r3 c1", "r4 c1"])
+    it do: expect(List.last(subject())).to eq(["r1+++c4", "r2 c4", "r3 c4", "r4 c4"])
   end
 
   describe "#widths_of" do
     subject do
       TF.widths_of(
-        TF.split_into_columns(simple_test_data, headers)
+        TF.split_into_columns(simple_test_data(), headers())
       )
     end
 
-    it do: is_expected.to eq([5, 6, 7])
+    it do: is_expected().to eq([5, 6, 7])
   end
 
   describe "#format_for" do
@@ -40,17 +40,17 @@ defmodule TableFormatterTest do
     let :w2, do: 6
     let :w3, do: 7
 
-    it do: is_expected.to eq("~-#{w1}s | ~-#{w2}s | ~-#{w3}s")
+    it do: is_expected().to eq("~-#{w1()}s | ~-#{w2()}s | ~-#{w3()}s")
   end
 
   describe "#print_table_for_columns" do
     subject do
       capture_io fn ->
-        TF.print_table_for_columns(simple_test_data, headers)
+        TF.print_table_for_columns(simple_test_data(), headers())
       end
     end
 
-    it do: is_expected.to eq("""
+    it do: is_expected().to eq("""
     c1    | c2     | c4
     ------+--------+--------
     r1 c1 | r1 c2  | r1+++c4
